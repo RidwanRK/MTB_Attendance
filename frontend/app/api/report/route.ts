@@ -1,19 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import AttendanceRecord from "@/lib/models/AttendanceRecord";
-import Profile from "@/lib/models/Profile";
+import { PROFILE } from "@/lib/profile";
 import { launchBrowser } from "@/lib/browser";
 
 export const maxDuration = 60;
 
-type ProfileDoc = {
-  name: string;
-  studentId: string;
-  role: string;
-  institution: string;
-  unit: string;
-  division: string;
-};
+type ProfileDoc = typeof PROFILE;
 
 type RecordDoc = {
   date: string;
@@ -100,12 +93,11 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const profile = (await Profile.findOne()) || ({} as ProfileDoc);
     const records = await AttendanceRecord.find({ date: { $gte: start, $lte: end } }).sort({
       date: 1,
     });
 
-    const html = buildReportHtml(profile as ProfileDoc, records as unknown as RecordDoc[]);
+    const html = buildReportHtml(PROFILE, records as unknown as RecordDoc[]);
 
     browser = await launchBrowser();
     const page = await browser.newPage();

@@ -7,7 +7,6 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/history", label: "History" },
   { href: "/report", label: "Report" },
-  { href: "/settings", label: "Settings" },
 ];
 
 export default function NavBar() {

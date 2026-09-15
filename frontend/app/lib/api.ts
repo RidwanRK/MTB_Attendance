@@ -10,16 +10,6 @@ export type AttendanceRecord = {
   notes: string;
 };
 
-export type Profile = {
-  _id?: string;
-  name: string;
-  studentId: string;
-  role: string;
-  institution: string;
-  unit: string;
-  division: string;
-};
-
 class ApiError extends Error {
   status: number;
   constructor(message: string, status: number) {
@@ -65,11 +55,5 @@ export const api = {
     }),
   deleteRecord: (id: string) =>
     request<{ message: string }>(`/api/records/${id}`, { method: "DELETE" }),
-  getProfile: () => request<Profile>("/api/profile"),
-  updateProfile: (data: Partial<Profile>) =>
-    request<Profile>("/api/profile", {
-      method: "PUT",
-      body: JSON.stringify(data),
-    }),
   reportUrl: (start: string, end: string) => `/api/report?start=${start}&end=${end}`,
 };
