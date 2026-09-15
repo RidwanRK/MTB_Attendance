@@ -1,5 +1,3 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-
 export type AttendanceRecord = {
   _id: string;
   date: string;
@@ -31,7 +29,7 @@ class ApiError extends Error {
 }
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(path, {
     headers: { "Content-Type": "application/json" },
     ...options,
   });
@@ -73,6 +71,5 @@ export const api = {
       method: "PUT",
       body: JSON.stringify(data),
     }),
-  reportUrl: (start: string, end: string) =>
-    `${API_BASE}/api/report?start=${start}&end=${end}`,
+  reportUrl: (start: string, end: string) => `/api/report?start=${start}&end=${end}`,
 };
