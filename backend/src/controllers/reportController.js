@@ -65,7 +65,7 @@ function buildReportHtml(profile, records) {
 <body>
   <div class="header">
     <p>Attendance Sheet of ${escapeHtml(profile.name)}</p>
-    <p>${escapeHtml(profile.studentId)}, ${escapeHtml(profile.role)}, ${escapeHtml(profile.institution)}</p>
+    <p>${escapeHtml(profile.role)}, ${escapeHtml(profile.institution)}</p>
     <p>${escapeHtml(profile.unit)}, ${escapeHtml(profile.division)}</p>
   </div>
   <table>
