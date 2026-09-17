@@ -35,17 +35,6 @@ export default function HistoryPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function handleDelete(id: string) {
-    if (!confirm("Delete this record? This cannot be undone.")) return;
-    setError("");
-    try {
-      await api.deleteRecord(id);
-      setRecords((prev) => prev.filter((r) => r._id !== id));
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to delete record");
-    }
-  }
-
   return (
     <div className="flex flex-col gap-5">
       <h1 className="text-2xl font-bold">History</h1>
@@ -101,19 +90,18 @@ export default function HistoryPage() {
               <th className="px-3 py-2 whitespace-nowrap">Late</th>
               <th className="px-3 py-2 whitespace-nowrap">Remarks</th>
               <th className="px-3 py-2 whitespace-nowrap">Notes</th>
-              <th className="px-3 py-2 whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={9} className="px-3 py-6 text-center text-slate-400">
+                <td colSpan={8} className="px-3 py-6 text-center text-slate-400">
                   Loading...
                 </td>
               </tr>
             ) : records.length === 0 ? (
               <tr>
-                <td colSpan={9} className="px-3 py-6 text-center text-slate-400">
+                <td colSpan={8} className="px-3 py-6 text-center text-slate-400">
                   No records in this range.
                 </td>
               </tr>
@@ -128,14 +116,6 @@ export default function HistoryPage() {
                   <td className="px-3 py-2 whitespace-nowrap">{r.late}</td>
                   <td className="px-3 py-2 min-w-32">{r.remarks || ""}</td>
                   <td className="px-3 py-2 min-w-32">{r.notes || ""}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    <button
-                      onClick={() => handleDelete(r._id)}
-                      className="text-red-500 text-xs"
-                    >
-                      Delete
-                    </button>
-                  </td>
                 </tr>
               ))
             )}

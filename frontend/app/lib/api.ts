@@ -48,12 +48,5 @@ export const api = {
     const qs = params.toString();
     return request<AttendanceRecord[]>(`/api/records${qs ? `?${qs}` : ""}`);
   },
-  updateRecord: (id: string, data: Partial<AttendanceRecord>) =>
-    request<AttendanceRecord>(`/api/records/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-    }),
-  deleteRecord: (id: string) =>
-    request<{ message: string }>(`/api/records/${id}`, { method: "DELETE" }),
   reportUrl: (start: string, end: string) => `/api/report?start=${start}&end=${end}`,
 };

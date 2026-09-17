@@ -17,7 +17,7 @@ Single Next.js project (App Router) deployed as one Vercel app — no separate b
 frontend/
   app/
     page.tsx              # Home: check-in / check-out / mark-absent
-    history/page.tsx       # Edit/delete past records
+    history/page.tsx       # View past records
     report/page.tsx        # Generate a PDF report for a date range
     api/
       checkin/route.ts
