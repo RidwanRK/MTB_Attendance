@@ -22,7 +22,7 @@ export async function POST() {
     }
 
     const lateCutoff = dayjs.tz(`${date} ${LATE_CUTOFF_HOUR}:00`, "YYYY-MM-DD H:mm", TZ);
-    const late = current.isAfter(lateCutoff) ? "Yes" : "No";
+    const late = current.isAfter(lateCutoff, "minute") ? "Yes" : "No";
     const status = late === "Yes" ? "Late" : "Present";
 
     record = await AttendanceRecord.findOneAndUpdate(

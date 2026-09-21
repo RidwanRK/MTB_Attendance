@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { api, AttendanceRecord } from "../lib/api";
 import { getDhakaToday } from "../lib/date";
