@@ -15,7 +15,7 @@ const attendanceRecordSchema = new Schema(
     remarks: { type: String, default: "" },
     notes: { type: String, default: "" },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 export default mongoose.models.AttendanceRecord ||
