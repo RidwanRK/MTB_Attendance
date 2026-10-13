@@ -41,7 +41,6 @@ export default function HistoryPage() {
     setEditingId(r._id);
     setDraft({
       remarks: r.remarks,
-      notes: r.notes,
       status: r.status,
       late: r.late,
       checkIn: r.checkIn,
@@ -122,20 +121,19 @@ export default function HistoryPage() {
               <th className="px-3 py-2 whitespace-nowrap">Status</th>
               <th className="px-3 py-2 whitespace-nowrap">Late</th>
               <th className="px-3 py-2 whitespace-nowrap">Remarks</th>
-              <th className="px-3 py-2 whitespace-nowrap">Notes</th>
               <th className="px-3 py-2 whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={9} className="px-3 py-6 text-center text-slate-400">
+                <td colSpan={8} className="px-3 py-6 text-center text-slate-400">
                   Loading...
                 </td>
               </tr>
             ) : records.length === 0 ? (
               <tr>
-                <td colSpan={9} className="px-3 py-6 text-center text-slate-400">
+                <td colSpan={8} className="px-3 py-6 text-center text-slate-400">
                   No records in this range.
                 </td>
               </tr>
@@ -218,17 +216,6 @@ export default function HistoryPage() {
                         />
                       ) : (
                         r.remarks || ""
-                      )}
-                    </td>
-                    <td className="px-3 py-2 min-w-32">
-                      {isEditing ? (
-                        <input
-                          className="w-full rounded border border-slate-300 px-1.5 py-1 text-xs"
-                          value={draft.notes || ""}
-                          onChange={(e) => setDraft((d) => ({ ...d, notes: e.target.value }))}
-                        />
-                      ) : (
-                        r.notes || ""
                       )}
                     </td>
                     <td className="px-3 py-2 whitespace-nowrap">
